@@ -1,0 +1,25 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content"
+    },
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "404": {
+      "title": "404 Page Not Found",
+      "subtext": "The page you requested does not exist."
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "My Account",
+      "details": "Account Details"
+    },
+    "login": {
+      "title": "Login",
+      "submit": "Sign In"
+    }
+  }
+}
