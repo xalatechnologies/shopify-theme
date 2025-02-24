@@ -1,0 +1,17 @@
+{
+  "name": "vvitec-shopify-theme",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "shopify": "shopify",
+    "theme": "shopify theme",
+    "dev": "shopify theme dev",
+    "pull": "shopify theme pull",
+    "push": "shopify theme push",
+    "preview": "shopify theme open"
+  },
+  "devDependencies": {
+    "@shopify/cli": "^3.55.0",
+    "@shopify/theme": "^3.55.0"
+  }
+}

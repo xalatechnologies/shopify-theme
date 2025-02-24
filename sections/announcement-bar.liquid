@@ -1,0 +1,58 @@
+{%- if section.settings.show_announcement -%}
+  <div class="announcement-bar" style="background-color: {{ section.settings.background }};">
+    <div class="container">
+      <div class="announcement-bar__content">
+        {%- if section.settings.text != blank -%}
+          <p class="announcement-bar__message" style="color: {{ section.settings.text_color }};">
+            {{ section.settings.text | escape }}
+          </p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement text",
+      "default": "Welcome to our store"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.announcement-bar {
+  padding: 10px 0;
+  text-align: center;
+}
+
+.announcement-bar__message {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+</style>

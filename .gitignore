@@ -1,0 +1,23 @@
+# Shopify specific
+config/settings_data.json
+config/settings_schema.json
+
+# Node
+node_modules
+npm-debug.log
+.npm
+
+# System files
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Environment
+.env
+.env.*
+
+# Build
+dist/
+build/
+.cache/

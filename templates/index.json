@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "show_overlay": true,
+        "text_color": "#ffffff"
+      }
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "",
+        "products_to_show": 8
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "featured-collection"
+  ]
+}

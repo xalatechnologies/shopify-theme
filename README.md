@@ -1,11 +1,27 @@
-# shopify-theme
+# VVITEC Shopify Theme
 
-## Feel free to delete this file and replace it with your own content.
+Custom Shopify theme for VVITEC, built with Shopify Online Store 2.0 features.
 
-## Repository Initialization Notice
+## Development
 
-This repository was automatically initialized by the Bolt to GitHub extension.
+1. Install dependencies:
+```bash
+npm install
+```
 
-**Auto-Generated Repository**
-- Created to ensure a valid Git repository structure
-- Serves as an initial commit point for your project
+2. Connect to your Shopify store:
+```bash
+npm run shopify auth
+```
+
+3. Start development server:
+```bash
+npm run dev
+```
+
+## Commands
+
+- `npm run dev` - Start development server
+- `npm run pull` - Pull theme files from Shopify
+- `npm run push` - Push theme files to Shopify
+- `npm run preview` - Open theme preview in browser

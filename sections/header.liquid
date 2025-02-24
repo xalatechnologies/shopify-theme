@@ -1,0 +1,226 @@
+<div class="header" data-header>
+  <div class="header__top">
+    <div class="container">
+      <div class="header__top-content">
+        <div class="header__contact">
+          {% if section.settings.phone %}
+            <a href="tel:{{ section.settings.phone }}" class="header__contact-item">
+              <span class="icon">{% render 'icon-phone' %}</span>
+              {{ section.settings.phone }}
+            </a>
+          {% endif %}
+          {% if section.settings.email %}
+            <a href="mailto:{{ section.settings.email }}" class="header__contact-item">
+              <span class="icon">{% render 'icon-email' %}</span>
+              {{ section.settings.email }}
+            </a>
+          {% endif %}
+        </div>
+        <div class="header__top-right">
+          {%- if shop.customer_accounts_enabled -%}
+            <div class="header__account">
+              {%- if customer -%}
+                <a href="{{ routes.account_url }}" class="header__account-link">
+                  <span class="icon">{% render 'icon-account' %}</span>
+                  {{ 'customer.account.title' | t }}
+                </a>
+              {%- else -%}
+                <a href="{{ routes.account_login_url }}" class="header__account-link">
+                  <span class="icon">{% render 'icon-account' %}</span>
+                  {{ 'customer.login.title' | t }}
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="header__main">
+    <div class="container">
+      <div class="header__main-content">
+        <div class="header__logo">
+          {%- if section.settings.logo != blank -%}
+            <a href="{{ routes.root_url }}" class="header__logo-link">
+              {%- assign logo_alt = section.settings.logo.alt | default: shop.name | escape -%}
+              {{ section.settings.logo | image_url: width: section.settings.logo_width | image_tag:
+                class: 'header__logo-image',
+                widths: '50, 100, 150, 200, 250, 300, 400, 500',
+                height: section.settings.logo.height,
+                width: section.settings.logo.width,
+                alt: logo_alt
+              }}
+            </a>
+          {%- else -%}
+            <a href="{{ routes.root_url }}" class="header__logo-link header__logo-text">
+              {{ shop.name }}
+            </a>
+          {%- endif -%}
+        </div>
+
+        <nav class="header__nav" role="navigation">
+          {%- for link in section.settings.menu.links -%}
+            <div class="header__nav-item">
+              <a href="{{ link.url }}" class="header__nav-link{% if link.active %} header__nav-link--active{% endif %}">
+                {{ link.title }}
+              </a>
+            </div>
+          {%- endfor -%}
+        </nav>
+
+        <div class="header__actions">
+          <a href="{{ routes.search_url }}" class="header__action-item">
+            <span class="icon">{% render 'icon-search' %}</span>
+          </a>
+          <a href="{{ routes.cart_url }}" class="header__action-item header__cart">
+            <span class="icon">{% render 'icon-cart' %}</span>
+            <span class="header__cart-count">{{ cart.item_count }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 250,
+      "step": 10,
+      "default": 100,
+      "unit": "px",
+      "label": "Logo width"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Menu"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone number"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email address"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.header {
+  position: relative;
+  z-index: 100;
+  background: var(--color-background);
+}
+
+.header__top {
+  background: var(--color-secondary);
+  padding: 10px 0;
+  color: white;
+  font-size: 13px;
+}
+
+.header__top-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__contact {
+  display: flex;
+  gap: 20px;
+}
+
+.header__contact-item {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.header__main {
+  padding: 20px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.header__main-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__logo-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.header__nav {
+  display: flex;
+  gap: 30px;
+}
+
+.header__nav-link {
+  color: var(--color-text-dark);
+  text-decoration: none;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.header__nav-link:hover,
+.header__nav-link--active {
+  color: var(--color-primary);
+}
+
+.header__actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.header__action-item {
+  color: var(--color-text-dark);
+  text-decoration: none;
+  position: relative;
+}
+
+.header__cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--color-primary);
+  color: white;
+  font-size: 11px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+}
+</style>
