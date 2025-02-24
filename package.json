@@ -5,7 +5,7 @@
   "scripts": {
     "shopify": "shopify",
     "theme": "shopify theme",
-    "dev": "shopify theme dev",
+    "dev": "shopify theme dev --store ${SHOPIFY_FLAG_STORE}",
     "pull": "shopify theme pull",
     "push": "shopify theme push",
     "preview": "shopify theme open"
